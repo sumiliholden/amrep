@@ -1,9 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState } from 'react'
-import { useAuth } from '@/hooks/auth'
+
 //components
-import Navigation from '@/components/Layouts/Guest/Navigation'
+import GuestLayout from '@/components/Layouts/Guest/Layout'
 import Footer from '@/components/Layouts/Guest/Footer'
 import { Button, ClientImage, Image, Rating, Grid } from '@/components/UI'
 import {
@@ -21,50 +20,12 @@ import {
     CardActions,
 } from '@/components/Card'
 export default function Home() {
-    const { user } = useAuth({ middleware: 'guest' })
-    const [theme, themeSet] = useState('cupcake')
+    
 
     return (
-        <>
-            <Head>
-                <title>Laravel</title>
-            </Head>
-
-            <div
-                className="rounded-lg bg-base-200 flex flex-col min-h-screen text-base-content"
-                data-theme={theme}>
-                <Navigation>
-                    <div className="dropdown dropdown-end ">
-                        <button className="btn btn-ghost btn-sm rounded-btn">
-                            Themes
-                        </button>
-                        <ul
-                            tabIndex="0"
-                            className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 text-base-content">
-                            <li>
-                                <a onClick={() => themeSet('cupcake')}>
-                                    cupcake
-                                </a>
-                            </li>
-                            <li>
-                                <a onClick={() => themeSet('dark')}>Dark</a>
-                            </li>
-                            <li>
-                                <a onClick={() => themeSet('wireframe')}>
-                                    Wireframe
-                                </a>
-                            </li>
-                            <li>
-                                <a onClick={() => themeSet('retro')}>Retro</a>
-                            </li>
-                            <li>
-                                <a onClick={() => themeSet('synthwave')}>
-                                    Blue potion
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </Navigation>
+        <GuestLayout>
+        
+            <div className='text-base-content'>
                 <div className="p-4 lg:p-10">
                     <HeroContainer>
                         <HeroContent>
@@ -200,10 +161,9 @@ export default function Home() {
                         </HeroContent>
                     </HeroContainer>
                 </div>
-                
 
                 <Footer />
             </div>
-        </>
+        </GuestLayout>
     )
 }

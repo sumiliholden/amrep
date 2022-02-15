@@ -1,12 +1,11 @@
-// import GuestNavigations from '@/data/GuestNavigations';
+import Link from 'next/link'
+// components
 import React, { useEffect } from 'react'
 import GuestNavigations from '@/data/GuestNavigations'
+import NavLink from '@/components/NavLink'
 
-const Navigation = ({ children }) => {
+const GuestNavigation = ({ children }) => {
     const nav = GuestNavigations
-    useEffect(() => {
-        console.log(nav[0].title)
-    })
     return (
         <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content ">
             <div className="flex-1 px-2 mx-2">
@@ -22,23 +21,39 @@ const Navigation = ({ children }) => {
                                     tabIndex="0"
                                     className="btn btn-ghost btn-sm rounded-btn">
                                     {data.title}
+                                    <svg
+                                        class="h-4 w-4 text-black-500"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
                                 </div>
                                 <ul
                                     tabIndex="0"
                                     className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 text-base-content">
                                     <li>
                                         {data.subNav.map(data => (
-                                            <a className="btn btn-ghost btn-sm rounded-btn">
+                                            <NavLink
+                                                className="btn btn-ghost btn-sm rounded-btn"
+                                                href={data.href}>
                                                 {data.title}
-                                            </a>
+                                            </NavLink>
                                         ))}
                                     </li>
                                 </ul>
                             </div>
                         ) : (
-                            <a className="btn btn-ghost btn-sm rounded-btn">
+                            <NavLink
+                                className="btn btn-ghost btn-sm rounded-btn"
+                                href={data.href}>
                                 {data.title}
-                            </a>
+                            </NavLink>
                         ),
                     )}
                 </div>
@@ -84,4 +99,4 @@ const Navigation = ({ children }) => {
     )
 }
 
-export default Navigation
+export default GuestNavigation
